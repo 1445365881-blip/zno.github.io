@@ -1,0 +1,933 @@
+[
+  {
+    "kana": "ぁしあと",
+    "kanji": "足跡",
+    "meaning": "足 迹，脚 印；踪 迹",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "ぁらそって",
+    "kanji": "争って",
+    "meaning": "〔副〕 争先恐后地",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "ぁらゎす",
+    "kanji": "署す",
+    "meaning": "著 ( 书 )，写 作",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "ぁらゎれ",
+    "kanji": "現れ",
+    "meaning": "显 露，体 现",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "ぁわい",
+    "kanji": "淡い",
+    "meaning": "颜 色 ) 浅 的；微 弱 的",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あいかわらず",
+    "kanji": "相変わらず",
+    "meaning": "0 依 然，照 旧",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あいず",
+    "kanji": "合凶",
+    "meaning": "俄 号，暗 号",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あおぐ",
+    "kanji": "仰ぐ",
+    "meaning": "仰 望，拙 头 看；尊",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あがる",
+    "kanji": "トがる",
+    "meaning": "0 登，攀 爬；( 地 位 、",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あがる",
+    "kanji": "ー上がる",
+    "meaning": "接 在 効 迭 途 用 形",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あきっぽい",
+    "kanji": "飽きっぽい",
+    "meaning": "没 长 性 的，容",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あきれる",
+    "kanji": "呆れる",
+    "meaning": "惊 松，因 意 外 而 不",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あくじゅんかん",
+    "kanji": "愛循環",
+    "meaning": "恶 性 循 环",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あくま",
+    "kanji": "悪魔",
+    "meaning": "恶 魔，魔 鬼",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あける",
+    "kanji": "開ける",
+    "meaning": "打 开；开 办",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あこかれ",
+    "kanji": "憧れ",
+    "meaning": "憧 憬，向 往",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あこがれる",
+    "kanji": "憧れる",
+    "meaning": "憧 憤，向 往",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あさごはん",
+    "kanji": "朝ご飯",
+    "meaning": "早 餐，早 仮",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あっか",
+    "kanji": "悪化",
+    "meaning": "状 态 、 病 情 等 ) 恶",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あつかましい",
+    "kanji": "厚かましい",
+    "meaning": "不 客 气",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あつりょく",
+    "kanji": "圧力",
+    "meaning": "压 力",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あてはまる",
+    "kanji": "当て嵌まる",
+    "meaning": "符 合 ( 一 定",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あとしまつ",
+    "kanji": "後始末",
+    "meaning": "收 拾，整",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あばぼれる",
+    "kanji": "暴れる",
+    "meaning": "朐 闹，乱 闹；大 显",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あびる",
+    "kanji": "浴びる",
+    "meaning": "淋，淋 浴；照 晒；遭 受",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あふる",
+    "kanji": "炙る",
+    "meaning": "烧，烤；靠 近 火 源 以 取 暖",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あまぐ",
+    "kanji": "雨具",
+    "meaning": "雨 具 ( 雨 伞 类，雨 鞋 类",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あまど",
+    "kanji": "雨戸",
+    "meaning": "防 雨 门，护 窗 板",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あめかぜ",
+    "kanji": "雨風",
+    "meaning": "雨 和 风；又 刮 风 又 下",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あらそい",
+    "kanji": "争い",
+    "meaning": "争 论，纠 纷",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あらためて",
+    "kanji": "改染丈",
+    "meaning": "再 …，男 外；重 新",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あらためる",
+    "kanji": "改める",
+    "meaning": "改 变，更 新；改",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あわただしい",
+    "kanji": "ロ慌しい",
+    "meaning": "慌 忙 的，匆 忙",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あわれむぅ",
+    "kanji": "哀れむ",
+    "meaning": "怜 悯，怜 惜",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あんい",
+    "kanji": "安易",
+    "meaning": "0 容 易 的，轻 而 易 举 的",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "あんき",
+    "kanji": "暗記",
+    "meaning": "记 忆，背 诵",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "ぃかり",
+    "kanji": "怒り",
+    "meaning": "愤 怒，生 气",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "ぃける",
+    "kanji": "三三ナる",
+    "meaning": "插 ( 花 )，栽 ( 花",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いいいあらそい",
+    "kanji": "言い争い",
+    "meaning": "0 争",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いいつたえる",
+    "kanji": "任元叶て",
+    "meaning": "0 传",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いいん",
+    "kanji": "委員",
+    "meaning": "委 员，通 过 选 举 产 生 的 抱 任",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いいん",
+    "kanji": "医院",
+    "meaning": "小 ) 医 院，通 常 指 个 人 经 营",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いかす",
+    "kanji": "生かす",
+    "meaning": "救 活，使 存 活；有 效",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いきおい",
+    "kanji": "勢い",
+    "meaning": "气 势，势 头，气 焰",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いきがい",
+    "kanji": "生きがい",
+    "meaning": "0 生 存 的 意 义，生",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いくつ",
+    "kanji": "幾一",
+    "meaning": "多 少，几 多 …...，表 示 具 体",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いくぶん",
+    "kanji": "幽分",
+    "meaning": "一 部 分；少 许，一",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いさましい",
+    "kanji": "勇ましい",
+    "meaning": "勇 敢 的，威 猛",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いざぎというとき",
+    "kanji": "いざという時〈",
+    "meaning": "紧 要 关",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いし",
+    "kanji": "医師",
+    "meaning": "医 师，医 生",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いせい",
+    "kanji": "威勢",
+    "meaning": "0 威 勢 : 勃 七",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いぜん",
+    "kanji": "依然",
+    "meaning": "依 然 と し て  依 然，依 田",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いたみ",
+    "kanji": "傷み",
+    "meaning": "食 品 ) 腐 烂；( 物 品 ) 损 坏",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いたみ",
+    "kanji": "痛み",
+    "meaning": "身 体 ) 疼 痛；苦 候",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いたむ",
+    "kanji": "傷む",
+    "meaning": "食 品 ) 腐 烂；( 物 品 ) 损",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いためる",
+    "kanji": "痛める",
+    "meaning": "使 ...... ( 身 体 ) 疼",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いためる",
+    "kanji": "談託・傷める",
+    "meaning": "使 …... ( 食",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いちがいに",
+    "kanji": "ー概に",
+    "meaning": "0 ( 下 接 否 定 ) 一 概",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いちだんと",
+    "kanji": "一段と",
+    "meaning": "格 外，更 加，越 发",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いっきさい",
+    "kanji": "ー切",
+    "meaning": "一 切，全 部；全 然",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いっきに",
+    "kanji": "一気に",
+    "meaning": "一 口 气，( 中 途 不 休 息",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いっさくじつ",
+    "kanji": "一昨日",
+    "meaning": "前 天",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いっさくねん",
+    "kanji": "一昨年",
+    "meaning": "前 年",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いっさんかたんそ",
+    "kanji": "ー酸化炭素",
+    "meaning": "一 氧",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いったん",
+    "kanji": "一旦",
+    "meaning": "0 暂 时，姑 且；一 丁，一 度",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いっち",
+    "kanji": "ロー致",
+    "meaning": "名 ・ 自 動  一 致，相 符；团 结",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いってん",
+    "kanji": "一転",
+    "meaning": "突 然 一 变，一 转",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いつのまにか",
+    "kanji": "いつの間にか",
+    "meaning": "不 知 不 觉",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いてん",
+    "kanji": "移転",
+    "meaning": "搬 家，乔 迁；转 移，转 让",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いど",
+    "kanji": "緯度",
+    "meaning": "纬 度",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いのり",
+    "kanji": "祈り",
+    "meaning": "祈 裘，裘 告",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いのる",
+    "kanji": "祈る",
+    "meaning": "祈 求，裘 告，祝 愿",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いふく",
+    "kanji": "衣服",
+    "meaning": "衣 服，衣 物",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いまいち",
+    "kanji": "今一",
+    "meaning": "差 一 点，再 加 把 劫",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いまどき",
+    "kanji": "今時〈",
+    "meaning": "现 今，如 今；现 在，这 个 时",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いまにも",
+    "kanji": "今にも",
+    "meaning": "眼 看，就 要 …..",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いまのところ",
+    "kanji": "今のところ",
+    "meaning": "0 目 前，现",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いよく",
+    "kanji": "意欲",
+    "meaning": "意 愿，热 情，积 极 性",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いらい",
+    "kanji": "依頼",
+    "meaning": "请 求，委 托；依 赖，依 靠",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いらい",
+    "kanji": "以来",
+    "meaning": "以 来 自 … 抄 始 至 今",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いるい",
+    "kanji": "衣類",
+    "meaning": "衣 服，衣 物",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いれかえる",
+    "kanji": "入れ替える",
+    "meaning": "改 换，更",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いんしゅ",
+    "kanji": "飲酒",
+    "meaning": "0 饮 酒，喝 酒",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いんしょく",
+    "kanji": "飲食",
+    "meaning": "会 食，吃 喝",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いんよう",
+    "kanji": "引用",
+    "meaning": "引 用，借 用",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "いんりょう",
+    "kanji": "飲料",
+    "meaning": "饮 料",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "ぅむ",
+    "kanji": "産む生む",
+    "meaning": "0 生 声，分 娩 : 形 生",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "うけつけ",
+    "kanji": "受付",
+    "meaning": "接 收，受 理；前",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "うけつける",
+    "kanji": "又けけける",
+    "meaning": "0 受 理，接",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "うけもつ",
+    "kanji": "受け持つ",
+    "meaning": "0 担 任，担 当",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "うすれる",
+    "kanji": "蒲れる",
+    "meaning": "0 变 得 淡 薄，退 化",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "うらぐち",
+    "kanji": "裏口",
+    "meaning": "0 后 门；幕 后，地 下，歪 门 邪",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "うらない",
+    "kanji": "占い",
+    "meaning": "0 占 卜，算 卦，占 卜",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "うらやましい",
+    "kanji": "羨ましい",
+    "meaning": "令 人 咤 漫",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "ぇぃぇん",
+    "kanji": "永遠",
+    "meaning": "永 丿，永 远；永 存",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "えいぞう",
+    "kanji": "映像",
+    "meaning": "0 影 像，图 像；映 像，什 影",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "えがお",
+    "kanji": "笑顔",
+    "meaning": "笑 脸",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "えのぐ",
+    "kanji": "絵の具",
+    "meaning": "绘 画 颜 料",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "おおすじ",
+    "kanji": "大筋",
+    "meaning": "梗 概，大 纲，要 点",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "おもいつき",
+    "kanji": "思いつき",
+    "meaning": "灵 机 一 动，偶 然",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "おもてぐち",
+    "kanji": "表口",
+    "meaning": "正 门，前 门",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "かせん",
+    "kanji": "河川",
+    "meaning": "河 川",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "がんばる",
+    "kanji": "頑張る",
+    "meaning": "奋 力 拼 搏，努 力",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "こい",
+    "kanji": "田濃い",
+    "meaning": "顔 色 ) 深 的，( 味 道 ) 厚 重",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "こそだて",
+    "kanji": "子育て",
+    "meaning": "抗 登 茂 子",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "ごあで",
+    "kanji": "ー宛て",
+    "meaning": "寄 往 … 送 往 …",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "さかや",
+    "kanji": "酒屋",
+    "meaning": "卖 酒 的 店；酒 坊，酿 酒 厂",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "さくじつ",
+    "kanji": "昨日",
+    "meaning": "昨 天",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "さくねん",
+    "kanji": "昨年",
+    "meaning": "去 年",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "させつ",
+    "kanji": "左折",
+    "meaning": "0 左 拐，左 转 弯",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "さんが",
+    "kanji": "山河",
+    "meaning": "山 河",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "さんそ",
+    "kanji": "酸素",
+    "meaning": "氧 气",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "しうんゆ",
+    "kanji": "運輸",
+    "meaning": "运 输，运 送",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "しゅきおびうんてん",
+    "kanji": "酒気帯び運転",
+    "meaning": "名 - 他",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "しゅんかん",
+    "kanji": "瞬間",
+    "meaning": "0 瞬 同，瞬 画",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "しょくりん",
+    "kanji": "植林",
+    "meaning": "0 植 树 造 林",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "ぜぞん",
+    "kanji": "國葉",
+    "meaning": "善，善 良",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "そんけい",
+    "kanji": "尊敬",
+    "meaning": "尊 敬，敬 重",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "っすめる",
+    "kanji": "薄める",
+    "meaning": "⑰ 稀 释，冲 淡",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "っちぁける",
+    "kanji": "打ち上ける",
+    "meaning": "发 射，打",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "っらゃむ",
+    "kanji": "欠軋",
+    "meaning": "羡 慕，眼 红，嫉 妒",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "っゎまわる",
+    "kanji": "ト四る",
+    "meaning": "〔自動口 超 出，超 过",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "てうすらぐ",
+    "kanji": "薄らぐ",
+    "meaning": "0 变 薄，变 淡；心",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "てをいきゅう",
+    "kanji": "永久",
+    "meaning": "永 久，永 远",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "どうせい",
+    "kanji": "同性て",
+    "meaning": "0 同 性，性 别 相 同",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "なきがお",
+    "kanji": "泣き顔",
+    "meaning": "0 哭 腋，哭 泣 的 面 孔",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "ななびん",
+    "kanji": "ョ船便",
+    "meaning": "0 通 船；用 船 邮 寄 ( 信 件",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "にさんかたんそ",
+    "kanji": "一酸化炭素",
+    "meaning": "二 氧",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "れいぎさほう",
+    "kanji": "礼儀作法",
+    "meaning": "礼 节，礼 仪",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "わぶん",
+    "kanji": "和文",
+    "meaning": "0 日 文",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "をいきゅう",
+    "kanji": "永久",
+    "meaning": "永 次，永 远",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "をえいわ",
+    "kanji": "英和",
+    "meaning": "英 和",
+    "exampleJa": "",
+    "exampleZh": ""
+  },
+  {
+    "kana": "をきりょく",
+    "kanji": "斥力",
+    "meaning": "斥 力，( 物 体 同 ) 相 互",
+    "exampleJa": "",
+    "exampleZh": ""
+  }
+]
