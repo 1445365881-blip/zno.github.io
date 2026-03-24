@@ -1,0 +1,359 @@
+[
+  {
+    "kana": "おはよう",
+    "kanji": "おはよう",
+    "meaning": "早上好",
+    "exampleJa": "おはよう、今日は早いね。",
+    "exampleZh": "早上好，今天起得很早呢。"
+  },
+  {
+    "kana": "こんにちは",
+    "kanji": "こんにちは",
+    "meaning": "你好",
+    "exampleJa": "こんにちは、元気ですか。",
+    "exampleZh": "你好，你好吗？"
+  },
+  {
+    "kana": "こんばんは",
+    "kanji": "こんばんは",
+    "meaning": "晚上好",
+    "exampleJa": "こんばんは、今日は寒いですね。",
+    "exampleZh": "晚上好，今天很冷呢。"
+  },
+  {
+    "kana": "ありがとう",
+    "kanji": "ありがとう",
+    "meaning": "谢谢",
+    "exampleJa": "手伝ってくれてありがとう。",
+    "exampleZh": "谢谢你帮我。"
+  },
+  {
+    "kana": "すみません",
+    "kanji": "すみません",
+    "meaning": "不好意思；对不起",
+    "exampleJa": "すみません、遅れました。",
+    "exampleZh": "不好意思，我迟到了。"
+  },
+  {
+    "kana": "ごめんなさい",
+    "kanji": "ごめんなさい",
+    "meaning": "对不起",
+    "exampleJa": "本当にごめんなさい。",
+    "exampleZh": "真的对不起。"
+  },
+  {
+    "kana": "さようなら",
+    "kanji": "さようなら",
+    "meaning": "再见",
+    "exampleJa": "また明日、さようなら。",
+    "exampleZh": "明天见，再见。"
+  },
+  {
+    "kana": "はい",
+    "kanji": "はい",
+    "meaning": "是；好的",
+    "exampleJa": "はい、わかりました。",
+    "exampleZh": "好的，我明白了。"
+  },
+  {
+    "kana": "いいえ",
+    "kanji": "いいえ",
+    "meaning": "不；不是",
+    "exampleJa": "いいえ、大丈夫です。",
+    "exampleZh": "不，没关系。"
+  },
+  {
+    "kana": "おねがいします",
+    "kanji": "お願いします",
+    "meaning": "拜托了；请",
+    "exampleJa": "よろしくお願いします。",
+    "exampleZh": "请多多关照。"
+  },
+  {
+    "kana": "どうぞ",
+    "kanji": "どうぞ",
+    "meaning": "请",
+    "exampleJa": "どうぞ、こちらへ。",
+    "exampleZh": "请，这边走。"
+  },
+  {
+    "kana": "どういたしまして",
+    "kanji": "どういたしまして",
+    "meaning": "不客气",
+    "exampleJa": "ありがとう。―どういたしまして。",
+    "exampleZh": "谢谢。——不客气。"
+  },
+  {
+    "kana": "いただきます",
+    "kanji": "いただきます",
+    "meaning": "我开动了",
+    "exampleJa": "ご飯の前にいただきますと言います。",
+    "exampleZh": "吃饭前要说“我开动了”。"
+  },
+  {
+    "kana": "ごちそうさまでした",
+    "kanji": "ごちそうさまでした",
+    "meaning": "我吃好了",
+    "exampleJa": "食べ終わったらごちそうさまでしたと言います。",
+    "exampleZh": "吃完后要说“我吃好了”。"
+  },
+  {
+    "kana": "いってきます",
+    "kanji": "いってきます",
+    "meaning": "我出门了",
+    "exampleJa": "学校へ行く前にいってきますと言います。",
+    "exampleZh": "去学校前会说“我出门了”。"
+  },
+  {
+    "kana": "いってらっしゃい",
+    "kanji": "いってらっしゃい",
+    "meaning": "路上小心",
+    "exampleJa": "母は私にいってらっしゃいと言いました。",
+    "exampleZh": "妈妈对我说“路上小心”。"
+  },
+  {
+    "kana": "ただいま",
+    "kanji": "ただいま",
+    "meaning": "我回来了",
+    "exampleJa": "家に帰ってただいまと言いました。",
+    "exampleZh": "回家后我说“我回来了”。"
+  },
+  {
+    "kana": "おかえり",
+    "kanji": "おかえり",
+    "meaning": "你回来了",
+    "exampleJa": "兄におかえりと言いました。",
+    "exampleZh": "我对哥哥说“你回来了”。"
+  },
+  {
+    "kana": "もしもし",
+    "kanji": "もしもし",
+    "meaning": "喂（电话用）",
+    "exampleJa": "もしもし、田中さんですか。",
+    "exampleZh": "喂，请问是田中先生吗？"
+  },
+  {
+    "kana": "わかりました",
+    "kanji": "分かりました",
+    "meaning": "明白了",
+    "exampleJa": "はい、分かりました。",
+    "exampleZh": "好的，我明白了。"
+  },
+  {
+    "kana": "しりません",
+    "kanji": "知りません",
+    "meaning": "不知道",
+    "exampleJa": "そのことは知りません。",
+    "exampleZh": "那件事我不知道。"
+  },
+  {
+    "kana": "だいじょうぶ",
+    "kanji": "大丈夫",
+    "meaning": "没关系；没问题",
+    "exampleJa": "少し疲れましたが、大丈夫です。",
+    "exampleZh": "虽然有点累，但没关系。"
+  },
+  {
+    "kana": "たいへん",
+    "kanji": "大変",
+    "meaning": "不得了；很辛苦",
+    "exampleJa": "今日は仕事が多くて大変です。",
+    "exampleZh": "今天工作很多，很辛苦。"
+  },
+  {
+    "kana": "いそがしい",
+    "kanji": "忙しい",
+    "meaning": "忙",
+    "exampleJa": "今週はとても忙しいです。",
+    "exampleZh": "这周非常忙。"
+  },
+  {
+    "kana": "ひま",
+    "kanji": "暇",
+    "meaning": "空闲",
+    "exampleJa": "日曜日は少し暇です。",
+    "exampleZh": "星期天有点空。"
+  },
+  {
+    "kana": "たのしい",
+    "kanji": "楽しい",
+    "meaning": "开心；快乐",
+    "exampleJa": "友だちと話すのは楽しいです。",
+    "exampleZh": "和朋友聊天很开心。"
+  },
+  {
+    "kana": "うれしい",
+    "kanji": "嬉しい",
+    "meaning": "高兴",
+    "exampleJa": "プレゼントをもらって嬉しかったです。",
+    "exampleZh": "收到礼物我很高兴。"
+  },
+  {
+    "kana": "かなしい",
+    "kanji": "悲しい",
+    "meaning": "难过",
+    "exampleJa": "そのニュースを聞いて悲しくなりました。",
+    "exampleZh": "听到那个消息我难过了。"
+  },
+  {
+    "kana": "つかれた",
+    "kanji": "疲れた",
+    "meaning": "累了",
+    "exampleJa": "今日はたくさん歩いたので疲れました。",
+    "exampleZh": "今天走了很多路，所以累了。"
+  },
+  {
+    "kana": "げんき",
+    "kanji": "元気",
+    "meaning": "精神；有活力",
+    "exampleJa": "今日はとても元気です。",
+    "exampleZh": "今天很有精神。"
+  },
+  {
+    "kana": "ねむい",
+    "kanji": "眠い",
+    "meaning": "困",
+    "exampleJa": "เมื่อคืนあまり寝なかったので眠いです。",
+    "exampleZh": "昨晚没怎么睡，所以很困。"
+  },
+  {
+    "kana": "おなかがすいた",
+    "kanji": "お腹が空いた",
+    "meaning": "肚子饿了",
+    "exampleJa": "勉強の前にお腹が空きました。",
+    "exampleZh": "学习前我肚子饿了。"
+  },
+  {
+    "kana": "のどがかわいた",
+    "kanji": "喉が渇いた",
+    "meaning": "口渴了",
+    "exampleJa": "運動のあとで喉が渇きました。",
+    "exampleZh": "运动后我口渴了。"
+  },
+  {
+    "kana": "あつい",
+    "kanji": "暑い",
+    "meaning": "热（天气）",
+    "exampleJa": "今日はとても暑いですね。",
+    "exampleZh": "今天很热呢。"
+  },
+  {
+    "kana": "さむい",
+    "kanji": "寒い",
+    "meaning": "冷（天气）",
+    "exampleJa": "朝は寒いのでコートを着ます。",
+    "exampleZh": "早上很冷，所以我穿外套。"
+  },
+  {
+    "kana": "あたたかい",
+    "kanji": "暖かい",
+    "meaning": "暖和",
+    "exampleJa": "今日は昨日より暖かいです。",
+    "exampleZh": "今天比昨天暖和。"
+  },
+  {
+    "kana": "すずしい",
+    "kanji": "涼しい",
+    "meaning": "凉快",
+    "exampleJa": "夜は涼しくて気持ちいいです。",
+    "exampleZh": "晚上很凉快，很舒服。"
+  },
+  {
+    "kana": "あめ",
+    "kanji": "雨",
+    "meaning": "雨",
+    "exampleJa": "今日は朝から雨が降っています。",
+    "exampleZh": "今天从早上开始就在下雨。"
+  },
+  {
+    "kana": "ゆき",
+    "kanji": "雪",
+    "meaning": "雪",
+    "exampleJa": "冬になると雪が降ります。",
+    "exampleZh": "一到冬天就会下雪。"
+  },
+  {
+    "kana": "かぜ",
+    "kanji": "風",
+    "meaning": "风",
+    "exampleJa": "今日は風が強いです。",
+    "exampleZh": "今天风很大。"
+  },
+  {
+    "kana": "てんき",
+    "kanji": "天気",
+    "meaning": "天气",
+    "exampleJa": "明日の天気はどうですか。",
+    "exampleZh": "明天天气怎么样？"
+  },
+  {
+    "kana": "みず",
+    "kanji": "水",
+    "meaning": "水",
+    "exampleJa": "水を一杯ください。",
+    "exampleZh": "请给我一杯水。"
+  },
+  {
+    "kana": "おちゃ",
+    "kanji": "お茶",
+    "meaning": "茶",
+    "exampleJa": "私は毎朝お茶を飲みます。",
+    "exampleZh": "我每天早上喝茶。"
+  },
+  {
+    "kana": "ごはん",
+    "kanji": "ご飯",
+    "meaning": "米饭；饭",
+    "exampleJa": "晩ご飯はもう食べましたか。",
+    "exampleZh": "晚饭你已经吃了吗？"
+  },
+  {
+    "kana": "パン",
+    "kanji": "パン",
+    "meaning": "面包",
+    "exampleJa": "朝ご飯にパンを食べました。",
+    "exampleZh": "早餐我吃了面包。"
+  },
+  {
+    "kana": "でんしゃ",
+    "kanji": "電車",
+    "meaning": "电车",
+    "exampleJa": "毎朝電車で学校へ行きます。",
+    "exampleZh": "我每天早上坐电车去学校。"
+  },
+  {
+    "kana": "えき",
+    "kanji": "駅",
+    "meaning": "车站",
+    "exampleJa": "駅で友だちを待っています。",
+    "exampleZh": "我在车站等朋友。"
+  },
+  {
+    "kana": "いえ",
+    "kanji": "家",
+    "meaning": "家",
+    "exampleJa": "今日は早く家に帰ります。",
+    "exampleZh": "今天我要早点回家。"
+  },
+  {
+    "kana": "がっこう",
+    "kanji": "学校",
+    "meaning": "学校",
+    "exampleJa": "学校は八時から始まります。",
+    "exampleZh": "学校八点开始上课。"
+  },
+  {
+    "kana": "しごと",
+    "kanji": "仕事",
+    "meaning": "工作",
+    "exampleJa": "父は毎日仕事で忙しいです。",
+    "exampleZh": "爸爸每天工作都很忙。"
+  },
+  {
+    "kana": "ともだち",
+    "kanji": "友だち",
+    "meaning": "朋友",
+    "exampleJa": "友だちと一緒に映画を見ました。",
+    "exampleZh": "我和朋友一起看了电影。"
+  }
+]
