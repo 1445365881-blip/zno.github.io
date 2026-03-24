@@ -487,7 +487,7 @@ let books = {
 };
 
 async function loadBookData(bookKey) {
-  const response = await fetch(`./data/${bookKey}.json`);
+  const response = await fetch(`data/${bookKey}.json`);
   if (!response.ok) {
     throw new Error(`加载 ${bookKey}.json 失败`);
   }
