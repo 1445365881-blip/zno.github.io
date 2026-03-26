@@ -226,19 +226,24 @@ async function loginWithEmailPassword() {
 /* =========================
    设置密码弹窗
 ========================= */
-
 function showPasswordModalIfNeeded() {
   const user = getCurrentUserData();
   if (!user) return;
 
-  if (!user.passwordSet) {
-    document.getElementById("passwordModal").classList.remove("hidden");
+  const modal = document.getElementById("passwordModal");
+
+  if (user.passwordSet) {
+    modal.classList.add("hidden");
+    return;
   }
+
+  modal.classList.remove("hidden");
 }
 
 async function setPasswordFromModal() {
   const password = document.getElementById("modalPassword").value.trim();
   const msg = document.getElementById("modalMsg");
+  const modal = document.getElementById("passwordModal");
 
   if (!password) {
     msg.innerText = "请输入密码";
@@ -252,14 +257,15 @@ async function setPasswordFromModal() {
 
   msg.innerText = "保存中...";
 
-  const { error } = await supabaseClient.auth.updateUser({
-    password: password
-  });
+  try {
+    const { error } = await supabaseClient.auth.updateUser({
+      password: password
+    });
 
-  if (error) {
-    msg.innerText = "失败：" + error.message;
-  } else {
-    msg.innerText = "设置成功！";
+    if (error) {
+      msg.innerText = "失败：" + error.message;
+      return;
+    }
 
     const user = getCurrentUserData();
     updateCurrentUserData({
@@ -268,12 +274,24 @@ async function setPasswordFromModal() {
     });
 
     document.getElementById("modalPassword").value = "";
+    msg.innerText = "设置成功！";
 
     setTimeout(() => {
-      document.getElementById("passwordModal").classList.add("hidden");
+      modal.classList.add("hidden");
       msg.innerText = "";
-    }, 800);
+    }, 500);
+  } catch (e) {
+    msg.innerText = "失败：" + e.message;
   }
+}
+function closePasswordModal() {
+  const modal = document.getElementById("passwordModal");
+  const msg = document.getElementById("modalMsg");
+  const input = document.getElementById("modalPassword");
+
+  modal.classList.add("hidden");
+  if (msg) msg.innerText = "";
+  if (input) input.value = "";
 }
 
 /* =========================
