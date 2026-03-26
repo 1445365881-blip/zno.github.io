@@ -25,10 +25,6 @@ let rewardedTenMinuteBlocks = 0;
 let voices = [];
 let authMode = "otp";
 
-/* =========================
-   登录方式切换
-========================= */
-
 function switchAuthMode(mode) {
   authMode = mode;
 
@@ -53,10 +49,6 @@ function switchAuthMode(mode) {
   if (authMsg) authMsg.innerText = "";
 }
 
-/* =========================
-   每个邮箱自己的本地学习数据
-========================= */
-
 function normalizeUser(user) {
   if (!user) return null;
 
@@ -69,8 +61,7 @@ function normalizeUser(user) {
     wrongWords: Array.isArray(user.wrongWords) ? user.wrongWords : [],
     lastLoginDate: user.lastLoginDate || "",
     todayStudyDate: user.todayStudyDate || "",
-    todayStudyCount: typeof user.todayStudyCount === "number" ? user.todayStudyCount : 0,
-    passwordSet: !!user.passwordSet
+    todayStudyCount: typeof user.todayStudyCount === "number" ? user.todayStudyCount : 0
   };
 }
 
@@ -90,8 +81,7 @@ function getCurrentUserData() {
       wrongWords: [],
       lastLoginDate: "",
       todayStudyDate: "",
-      todayStudyCount: 0,
-      passwordSet: false
+      todayStudyCount: 0
     };
 
     allUserData[currentUser] = defaultUserData;
@@ -115,8 +105,7 @@ function updateCurrentUserData(newData) {
     wrongWords: [],
     lastLoginDate: "",
     todayStudyDate: "",
-    todayStudyCount: 0,
-    passwordSet: false
+    todayStudyCount: 0
   };
 
   allUserData[currentUser] = normalizeUser({
@@ -132,10 +121,6 @@ function updateCurrentUserData(newData) {
 function sameWord(a, b) {
   return !!a && !!b && a.kana === b.kana && a.kanji === b.kanji;
 }
-
-/* =========================
-   OTP 注册 / 登录
-========================= */
 
 async function sendEmailCode() {
   const email = document.getElementById("email").value.trim();
@@ -190,10 +175,6 @@ async function loginWithCode() {
   authMsg.innerText = "验证码登录成功";
 }
 
-/* =========================
-   邮箱 + 密码登录
-========================= */
-
 async function loginWithEmailPassword() {
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
@@ -221,81 +202,6 @@ async function loginWithEmailPassword() {
   authMsg.innerText = "邮箱+密码登录成功";
 }
 
-/* =========================
-   设置密码弹窗（保留功能，但不自动弹）
-========================= */
-
-function showPasswordModalIfNeeded() {
-  const modal = document.getElementById("passwordModal");
-  if (modal) {
-    modal.classList.add("hidden");
-  }
-  return;
-}
-
-function closePasswordModal() {
-  const modal = document.getElementById("passwordModal");
-  const msg = document.getElementById("modalMsg");
-  const input = document.getElementById("modalPassword");
-
-  if (modal) modal.classList.add("hidden");
-  if (msg) msg.innerText = "";
-  if (input) input.value = "";
-}
-
-async function setPasswordFromModal() {
-  const passwordInput = document.getElementById("modalPassword");
-  const msg = document.getElementById("modalMsg");
-  const modal = document.getElementById("passwordModal");
-
-  if (!passwordInput || !msg || !modal) return;
-
-  const password = passwordInput.value.trim();
-
-  if (!password) {
-    msg.innerText = "请输入密码";
-    return;
-  }
-
-  if (password.length < 6) {
-    msg.innerText = "至少6位";
-    return;
-  }
-
-  msg.innerText = "保存中...";
-
-  try {
-    const { error } = await supabaseClient.auth.updateUser({
-      password: password
-    });
-
-    if (error) {
-      msg.innerText = "失败：" + error.message;
-      return;
-    }
-
-    const user = getCurrentUserData() || {};
-    updateCurrentUserData({
-      ...user,
-      passwordSet: true
-    });
-
-    passwordInput.value = "";
-    msg.innerText = "设置成功！";
-
-    setTimeout(() => {
-      modal.classList.add("hidden");
-      msg.innerText = "";
-    }, 500);
-  } catch (e) {
-    msg.innerText = "失败：" + e.message;
-  }
-}
-
-/* =========================
-   登录成功后的统一处理
-========================= */
-
 function handleLoginSuccess() {
   if (!currentUser) return;
 
@@ -318,10 +224,6 @@ function handleLoginSuccess() {
   showPage("bookPage");
 }
 
-/* =========================
-   语音初始化
-========================= */
-
 function loadVoices() {
   if ("speechSynthesis" in window) {
     voices = speechSynthesis.getVoices();
@@ -332,10 +234,6 @@ if ("speechSynthesis" in window) {
   loadVoices();
   speechSynthesis.onvoiceschanged = loadVoices;
 }
-
-/* =========================
-   页面与计时
-========================= */
 
 function showPage(pageId) {
   document.querySelectorAll(".page").forEach(page => {
@@ -467,10 +365,6 @@ function updateBookPage() {
 
   updateStudyTimerDisplay();
 }
-
-/* =========================
-   学习
-========================= */
 
 async function selectBook(bookKey) {
   try {
@@ -730,10 +624,6 @@ function backToBooks() {
   updateStudyTimerDisplay();
 }
 
-/* =========================
-   复习
-========================= */
-
 function goToReview() {
   const user = normalizeUser(getCurrentUserData());
   if (!user) return;
@@ -880,10 +770,6 @@ function backToStudy() {
   showPage("studyPage");
 }
 
-/* =========================
-   语音
-========================= */
-
 function speakWord() {
   const user = normalizeUser(getCurrentUserData());
   if (!user) return;
@@ -993,17 +879,8 @@ function speakWordAndExample() {
   speechSynthesis.speak(utterance1);
 }
 
-/* =========================
-   页面加载后恢复登录
-========================= */
-
 document.addEventListener("DOMContentLoaded", async () => {
   switchAuthMode("otp");
-
-  const modal = document.getElementById("passwordModal");
-  if (modal) {
-    modal.classList.add("hidden");
-  }
 
   const { data } = await supabaseClient.auth.getSession();
 
