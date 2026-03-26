@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>日语打卡网页</title>
-  <link rel="stylesheet" href="style.css?v=99">
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
@@ -47,7 +47,7 @@
             <button onclick="loginWithEmailPassword()">邮箱+密码登录</button>
           </div>
 
-          <p class="msg">第一次请先用邮箱验证码登录，登录后可设置密码。</p>
+          <p class="msg">第一次请先用邮箱验证码登录，后续即可直接用邮箱+密码登录。</p>
         </div>
 
         <p id="authMsg" class="msg"></p>
@@ -196,20 +196,7 @@
 
   </div>
 
-  <!-- 设置密码弹窗：保留，但默认 hidden，且不会自动触发 -->
-  <div id="passwordModal" class="modal hidden">
-    <div class="modal-content">
-      <h3>设置登录密码</h3>
-      <input type="password" id="modalPassword" placeholder="至少6位密码">
-      <div class="btn-group">
-        <button onclick="setPasswordFromModal()">保存密码</button>
-        <button onclick="closePasswordModal()">关闭</button>
-      </div>
-      <p id="modalMsg" class="msg"></p>
-    </div>
-  </div>
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="script.js?v=99"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>
