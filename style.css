@@ -284,3 +284,49 @@ button:disabled {
   width: 90%;
   max-width: 400px;
 }
+.welcome-title {
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.welcome-sub {
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: 24px;
+}
+
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.book-card {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.book-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.book-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.book-desc {
+  font-size: 15px;
+  opacity: 0.9;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
