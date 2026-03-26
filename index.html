@@ -19,7 +19,6 @@
     <!-- 登录注册页 -->
     <section id="authPage" class="page active">
       <div class="card">
-        
         <input type="email" id="email" placeholder="请输入邮箱地址">
 
         <div class="btn-group">
@@ -63,38 +62,37 @@
         <p>当前用户：<span id="currentUser"></span></p>
         <p>当前积分：<span id="userPoints">0</span></p>
 
-       <div class="book-list">
+        <div class="book-list">
+          <div class="book-card">
+            <div class="book-title">📘 N2单词书</div>
+            <div class="book-desc">JLPT N2冲刺阶段</div>
+            <button onclick="selectBook('n2')">开始学习</button>
+          </div>
 
-  <div class="book-card">
-    <div class="book-title">📘 N2单词书</div>
-    <div class="book-desc">JLPT N2冲刺阶段</div>
-    <button onclick="selectBook('n2')">开始学习</button>
-  </div>
-  <div class="book-card">
-    <div class="book-title">📒 N3单词书</div>
-    <div class="book-desc">N3 常考词</div>
-    <button onclick="selectBook('n3')">开始学习</button>
-  </div>
-         
-  <div class="book-card">
-    <div class="book-title">📗 N5基础单词</div>
-    <div class="book-desc">日语入门基础</div>
-    <button onclick="selectBook('n5')">开始学习</button>
-  </div>
+          <div class="book-card">
+            <div class="book-title">📒 N3单词书</div>
+            <div class="book-desc">N3 常考词</div>
+            <button onclick="selectBook('n3')">开始学习</button>
+          </div>
 
-  <div class="book-card">
-    <div class="book-title">📙 N4常用单词</div>
-    <div class="book-desc">进阶常用表达</div>
-    <button onclick="selectBook('n4')">开始学习</button>
-  </div>
+          <div class="book-card">
+            <div class="book-title">📗 N5基础单词</div>
+            <div class="book-desc">日语入门基础</div>
+            <button onclick="selectBook('n5')">开始学习</button>
+          </div>
 
-  <div class="book-card">
-    <div class="book-title">📒 日常会话</div>
-    <div class="book-desc">生活常用表达</div>
-    <button onclick="selectBook('daily')">开始学习</button>
-  </div>
+          <div class="book-card">
+            <div class="book-title">📙 N4常用单词</div>
+            <div class="book-desc">进阶常用表达</div>
+            <button onclick="selectBook('n4')">开始学习</button>
+          </div>
 
-</div>
+          <div class="book-card">
+            <div class="book-title">📒 日常会话</div>
+            <div class="book-desc">生活常用表达</div>
+            <button onclick="selectBook('daily')">开始学习</button>
+          </div>
+        </div>
 
         <div class="btn-group">
           <button onclick="goToFavorites()">收藏夹</button>
@@ -129,7 +127,7 @@
             <p id="meaning">中文意思</p>
           </div>
 
-          <div id="exampleSection" class="example-section">
+          <div id="exampleSection" class="example-section hidden">
             <div class="example-card">
               <div class="example-title">日语例句</div>
               <p id="exampleJa"></p>
@@ -198,20 +196,20 @@
 
   </div>
 
-  <!-- 设置密码弹窗 -->
-
-<div id="passwordModal" class="modal hidden" onclick="this.classList.add('hidden')">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <h3>设置登录密码</h3>
-    <input type="password" id="modalPassword" placeholder="至少6位密码">
-    <div class="btn-group">
-      <button onclick="setPasswordFromModal()">保存密码</button>
-      <button onclick="closePasswordModal()">先关闭</button>
+  <!-- 设置密码弹窗：保留，但默认 hidden，且不会自动触发 -->
+  <div id="passwordModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>设置登录密码</h3>
+      <input type="password" id="modalPassword" placeholder="至少6位密码">
+      <div class="btn-group">
+        <button onclick="setPasswordFromModal()">保存密码</button>
+        <button onclick="closePasswordModal()">关闭</button>
+      </div>
+      <p id="modalMsg" class="msg"></p>
     </div>
-    <p id="modalMsg" class="msg"></p>
   </div>
-</div>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=99"></script>
 </body>
 </html>
