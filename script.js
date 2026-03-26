@@ -5,6 +5,7 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const bookNames = {
   n2: "N2单词书",
+  n3："N3单词书",
   n5: "N5基础单词",
   n4: "N4常用单词",
   daily: "日常会话单词"
