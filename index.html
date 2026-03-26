@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div id="app">
 
     <!-- 全局状态条 -->
@@ -19,7 +18,9 @@
     <!-- 登录注册页 -->
     <section id="authPage" class="page active">
       <div class="card">
-        
+        <h1>日语单词打卡系统</h1>
+        <p>邮箱验证码注册 / 登录，也可用邮箱+密码登录</p>
+
         <input type="email" id="email" placeholder="请输入邮箱地址">
 
         <div class="btn-group">
@@ -58,38 +59,16 @@
     <!-- 单词书选择页 -->
     <section id="bookPage" class="page">
       <div class="card">
-        <h2 class="welcome-title">✨ 欢迎来到 ZNO 的学习空间</h2>
-        <p class="welcome-sub">今天也要坚持学习一下吧！</p>
+        <h2>选择单词书</h2>
         <p>当前用户：<span id="currentUser"></span></p>
         <p>当前积分：<span id="userPoints">0</span></p>
 
-       <div class="book-list">
-
-  <div class="book-card">
-    <div class="book-title">📘 N2单词书</div>
-    <div class="book-desc">JLPT N2冲刺阶段</div>
-    <button onclick="selectBook('n2')">开始学习</button>
-  </div>
-
-  <div class="book-card">
-    <div class="book-title">📗 N5基础单词</div>
-    <div class="book-desc">日语入门基础</div>
-    <button onclick="selectBook('n5')">开始学习</button>
-  </div>
-
-  <div class="book-card">
-    <div class="book-title">📙 N4常用单词</div>
-    <div class="book-desc">进阶常用表达</div>
-    <button onclick="selectBook('n4')">开始学习</button>
-  </div>
-
-  <div class="book-card">
-    <div class="book-title">📒 日常会话</div>
-    <div class="book-desc">生活常用表达</div>
-    <button onclick="selectBook('daily')">开始学习</button>
-  </div>
-
-</div>
+        <div class="book-list">
+          <button onclick="selectBook('n2')">N2单词书</button>
+          <button onclick="selectBook('n5')">N5基础单词</button>
+          <button onclick="selectBook('n4')">N4常用单词</button>
+          <button onclick="selectBook('daily')">日常会话单词</button>
+        </div>
 
         <div class="btn-group">
           <button onclick="goToFavorites()">收藏夹</button>
@@ -116,7 +95,6 @@
           <div class="word-main">
             <div class="kanji-label">单词</div>
             <h1 id="kanji">漢字</h1>
-            <p id="pos" class="pos-text"></p>
           </div>
 
           <div class="meaning-box">
@@ -204,3 +182,8 @@
       <p id="modalMsg" class="msg"></p>
     </div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+</body>
+</html>

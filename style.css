@@ -4,23 +4,23 @@
 
 body {
   margin: 0;
-  font-family: "Segoe UI", "Hiragino Sans", "Microsoft YaHei", sans-serif;
-  background: linear-gradient(180deg, #f7fbff 0%, #eef6ff 45%, #e8f2ff 100%);
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, #0d47a1, #1976d2, #42a5f5);
   min-height: 100vh;
-  color: #2f3a4a;
+  color: #fff;
 }
 
 #app {
   width: 100%;
   min-height: 100vh;
-  padding: 24px;
+  padding: 30px;
 }
 
 .page {
   display: none;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 48px);
+  min-height: calc(100vh - 60px);
 }
 
 .page.active {
@@ -29,67 +29,50 @@ body {
 
 .card {
   width: 100%;
-  max-width: 760px;
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: 24px;
-  padding: 32px;
-  box-shadow: 0 12px 32px rgba(120, 160, 210, 0.16);
-  border: 1px solid rgba(170, 200, 235, 0.35);
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 30px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 h1,
 h2,
 h3 {
   margin-top: 0;
-  color: #4c6fa8;
-}
-
-p {
-  line-height: 1.8;
 }
 
 input {
   width: 100%;
-  padding: 14px 16px;
+  padding: 12px;
   margin: 10px 0;
-  border: 1px solid #d7e6f5;
-  border-radius: 14px;
+  border: none;
+  border-radius: 10px;
   font-size: 16px;
-  background: #f9fcff;
-  color: #2f3a4a;
-  outline: none;
-  transition: 0.2s;
-}
-
-input:focus {
-  border-color: #8dbaf2;
-  box-shadow: 0 0 0 4px rgba(141, 186, 242, 0.16);
 }
 
 button {
   padding: 12px 18px;
   border: none;
-  border-radius: 14px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
-  background: linear-gradient(135deg, #8ec5ff, #6ea8ff);
-  color: white;
-  font-weight: 600;
+  background: #ffffff;
+  color: #1565c0;
+  font-weight: bold;
   transition: 0.2s;
-  box-shadow: 0 6px 14px rgba(110, 168, 255, 0.22);
 }
 
 button:hover {
-  opacity: 1;
+  opacity: 0.9;
   transform: translateY(-1px);
-  filter: brightness(1.03);
 }
 
 button:disabled {
   opacity: 0.65;
   cursor: not-allowed;
   transform: none;
-  filter: none;
 }
 
 .btn-group {
@@ -101,8 +84,8 @@ button:disabled {
 
 .msg {
   margin-top: 16px;
-  font-weight: 600;
-  color: #e39b54;
+  font-weight: bold;
+  color: #ffeb3b;
   line-height: 1.6;
 }
 
@@ -116,25 +99,9 @@ button:disabled {
 #favoriteList {
   padding-left: 20px;
   line-height: 1.8;
-  color: #2f3a4a;
 }
 
 /* 登录区 */
-#authPage .card {
-  max-width: 560px;
-  text-align: center;
-}
-
-#authPage h1 {
-  font-size: 30px;
-  color: #4c6fa8;
-  margin-bottom: 10px;
-}
-
-#authPage p {
-  color: #6b7a90;
-}
-
 #passwordAuthBox,
 #codeAuthBox {
   margin-top: 14px;
@@ -142,12 +109,11 @@ button:disabled {
 
 /* 学习区 */
 .word-box {
-  background: linear-gradient(180deg, #fafdff 0%, #f3f9ff 100%);
+  background: rgba(255, 255, 255, 0.16);
   padding: 24px;
   border-radius: 20px;
   margin-top: 20px;
-  border: 1px solid #e2eef9;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .word-head,
@@ -161,7 +127,7 @@ button:disabled {
 .meaning-label,
 .example-title {
   font-size: 14px;
-  color: #7b8ba3;
+  opacity: 0.85;
   margin-bottom: 8px;
   letter-spacing: 1px;
 }
@@ -170,7 +136,6 @@ button:disabled {
   font-size: 28px;
   margin: 0;
   font-weight: 600;
-  color: #5d7eb5;
 }
 
 #kanji {
@@ -178,14 +143,12 @@ button:disabled {
   margin: 0;
   line-height: 1.2;
   word-break: break-word;
-  color: #304863;
 }
 
 #meaning {
   margin: 0;
   font-size: 22px;
   line-height: 1.6;
-  color: #42556e;
 }
 
 .example-section {
@@ -195,34 +158,29 @@ button:disabled {
 }
 
 .example-card {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 16px;
   padding: 16px 18px;
-  border: 1px solid #e6eef8;
-  box-shadow: 0 4px 12px rgba(143, 170, 210, 0.08);
 }
 
 .example-card p {
   margin: 0;
   font-size: 18px;
   line-height: 1.7;
-  color: #42556e;
 }
 
 /* 复习区 */
 .review-box {
-  background: linear-gradient(180deg, #fafdff 0%, #f3f9ff 100%);
+  background: rgba(255, 255, 255, 0.16);
   padding: 22px;
   border-radius: 18px;
   margin-top: 20px;
-  border: 1px solid #e2eef9;
 }
 
 #reviewMeaning {
   font-size: 28px;
   margin: 0 0 16px 0;
   line-height: 1.5;
-  color: #304863;
 }
 
 #reviewInput {
@@ -231,13 +189,11 @@ button:disabled {
 }
 
 .answer-box {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.14);
   border-radius: 16px;
   padding: 18px;
   margin-top: 18px;
   line-height: 1.8;
-  border: 1px solid #e6eef8;
-  color: #42556e;
 }
 
 /* 顶部学习状态条 */
@@ -246,44 +202,19 @@ button:disabled {
   max-width: 900px;
   margin: 0 auto 20px auto;
   padding: 14px 18px;
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.14);
   border-radius: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #4e6587;
+  color: #fff;
   font-size: 16px;
-  box-shadow: 0 6px 20px rgba(120, 160, 210, 0.12);
-  border: 1px solid rgba(170, 200, 235, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
 }
 
 .hidden {
   display: none !important;
-}
-
-/* 弹窗 */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(92, 114, 145, 0.35);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.modal-content {
-  background: rgba(255, 255, 255, 0.97);
-  color: #2f3a4a;
-  padding: 30px;
-  border-radius: 18px;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0 12px 30px rgba(120, 160, 210, 0.18);
-  border: 1px solid rgba(170, 200, 235, 0.35);
 }
 
 /* 手机适配 */
@@ -294,7 +225,7 @@ button:disabled {
 
   .card {
     padding: 20px;
-    border-radius: 18px;
+    border-radius: 16px;
   }
 
   .global-study-bar {
@@ -331,56 +262,25 @@ button:disabled {
   .example-card p {
     font-size: 16px;
   }
-
-  #authPage h1 {
-    font-size: 24px;
-  }
 }
-.book-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.book-card {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 18px 20px;
-  border: 1px solid #e3eef9;
-  box-shadow: 0 6px 18px rgba(120, 160, 210, 0.12);
-  text-align: left;
-  transition: 0.2s;
-}
-
-.book-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(120, 160, 210, 0.18);
-}
-
-.book-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #3f5f8a;
-  margin-bottom: 6px;
-}
-
-.book-desc {
-  font-size: 14px;
-  color: #7b8ba3;
-  margin-bottom: 12px;
-}
-
-.book-card button {
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
-.pos-text {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: rgba(21, 101, 192, 0.12);
-  color: #1565c0;
-  font-size: 14px;
-  font-weight: 600;
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  padding: 30px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
 }

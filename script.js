@@ -537,7 +537,7 @@ function showWord() {
   document.getElementById("kana").innerText = word.kana || "";
   document.getElementById("kanji").innerText = word.kanji || "（无汉字）";
   document.getElementById("meaning").innerText = word.meaning || "";
-  document.getElementById("pos").innerText = word.pos || "";
+
   const exampleJa = (word.exampleJa || "").trim();
   const exampleZh = (word.exampleZh || "").trim();
 
