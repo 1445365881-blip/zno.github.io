@@ -231,8 +231,9 @@ function showPasswordModalIfNeeded() {
   if (!user) return;
 
   const modal = document.getElementById("passwordModal");
+  if (!modal) return;
 
-  if (user.passwordSet) {
+  if (user.passwordSet === true) {
     modal.classList.add("hidden");
     return;
   }
@@ -267,7 +268,7 @@ async function setPasswordFromModal() {
       return;
     }
 
-    const user = getCurrentUserData();
+    const user = getCurrentUserData() || {};
     updateCurrentUserData({
       ...user,
       passwordSet: true
@@ -283,6 +284,16 @@ async function setPasswordFromModal() {
   } catch (e) {
     msg.innerText = "失败：" + e.message;
   }
+}
+
+function closePasswordModal() {
+  const modal = document.getElementById("passwordModal");
+  const msg = document.getElementById("modalMsg");
+  const input = document.getElementById("modalPassword");
+
+  if (modal) modal.classList.add("hidden");
+  if (msg) msg.innerText = "";
+  if (input) input.value = "";
 }
 function closePasswordModal() {
   const modal = document.getElementById("passwordModal");
