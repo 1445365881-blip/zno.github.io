@@ -199,8 +199,9 @@
   </div>
 
   <!-- 设置密码弹窗 -->
-<div id="passwordModal" class="modal hidden">
-  <div class="modal-content">
+
+<div id="passwordModal" class="modal hidden" onclick="this.classList.add('hidden')">
+  <div class="modal-content" onclick="event.stopPropagation()">
     <h3>设置登录密码</h3>
     <input type="password" id="modalPassword" placeholder="至少6位密码">
     <div class="btn-group">
@@ -210,8 +211,6 @@
     <p id="modalMsg" class="msg"></p>
   </div>
 </div>
-  </div>
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js"></script>
 </body>
