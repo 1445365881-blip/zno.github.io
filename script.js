@@ -226,20 +226,7 @@ async function loginWithEmailPassword() {
 /* =========================
    设置密码弹窗
 ========================= */
-function showPasswordModalIfNeeded() {
-  const user = getCurrentUserData();
-  if (!user) return;
 
-  const modal = document.getElementById("passwordModal");
-  if (!modal) return;
-
-  if (user.passwordSet === true) {
-    modal.classList.add("hidden");
-    return;
-  }
-
-  modal.classList.remove("hidden");
-}
 
 async function setPasswordFromModal() {
   const password = document.getElementById("modalPassword").value.trim();
