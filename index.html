@@ -199,15 +199,17 @@
   </div>
 
   <!-- 设置密码弹窗 -->
-  <div id="passwordModal" class="modal hidden">
-    <div class="modal-content">
-      <h3>设置登录密码</h3>
-      <input type="password" id="modalPassword" placeholder="至少6位密码">
-      <div class="btn-group">
-        <button onclick="setPasswordFromModal()">保存密码</button>
-      </div>
-      <p id="modalMsg" class="msg"></p>
+<div id="passwordModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>设置登录密码</h3>
+    <input type="password" id="modalPassword" placeholder="至少6位密码">
+    <div class="btn-group">
+      <button onclick="setPasswordFromModal()">保存密码</button>
+      <button onclick="closePasswordModal()">先关闭</button>
     </div>
+    <p id="modalMsg" class="msg"></p>
+  </div>
+</div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
