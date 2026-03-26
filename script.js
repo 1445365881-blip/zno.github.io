@@ -482,6 +482,7 @@ async function selectBook(bookKey) {
 
 let books = {
   n2: [],
+  n3: [],
   n5: [],
   n4: [],
   daily: []
