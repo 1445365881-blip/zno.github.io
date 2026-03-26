@@ -1,64 +1,301 @@
-// ===== Supabase 初始化 =====
-const supabaseClient = supabase.createClient(
-  "https://your-project-url.supabase.co",
-  "your-anon-key"
-);
+const SUPABASE_URL = "https://qyiqpvwzqtdxlzvoluqs.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5aXFwdnd6cXRkeGx6dm9sdXFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyNzEyMDIsImV4cCI6MjA4OTg0NzIwMn0.LAMfquKJFdWBqRupfkyRilNVpMSl3LkrmD5dIRmuHbM";
 
-// ===== 全局变量 =====
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const bookNames = {
+  n2: "N2单词书",
+  n3: "N3单词书",
+  n5: "N5基础单词",
+  n4: "N4常用单词",
+  daily: "日常会话单词"
+};
+
 let currentUser = null;
-let currentBook = "";
-let words = [];
+let currentBook = null;
 let currentIndex = 0;
+let reviewIndex = 0;
+let reviewList = [];
 
-// ===== 用户数据 =====
-function getAllUserData() {
-  return JSON.parse(localStorage.getItem("userData")) || {};
+let studySeconds = 0;
+let studyTimerInterval = null;
+let studySessionActive = false;
+let rewardedTenMinuteBlocks = 0;
+
+let voices = [];
+let authMode = "otp";
+
+/* =========================
+   登录方式切换
+========================= */
+
+function switchAuthMode(mode) {
+  authMode = mode;
+
+  const otpAuthBox = document.getElementById("otpAuthBox");
+  const passwordAuthBox = document.getElementById("passwordAuthBox");
+  const otpModeBtn = document.getElementById("otpModeBtn");
+  const passwordModeBtn = document.getElementById("passwordModeBtn");
+  const authMsg = document.getElementById("authMsg");
+
+  if (mode === "otp") {
+    if (otpAuthBox) otpAuthBox.classList.remove("hidden");
+    if (passwordAuthBox) passwordAuthBox.classList.add("hidden");
+    if (otpModeBtn) otpModeBtn.disabled = true;
+    if (passwordModeBtn) passwordModeBtn.disabled = false;
+  } else {
+    if (otpAuthBox) otpAuthBox.classList.add("hidden");
+    if (passwordAuthBox) passwordAuthBox.classList.remove("hidden");
+    if (otpModeBtn) otpModeBtn.disabled = false;
+    if (passwordModeBtn) passwordModeBtn.disabled = true;
+  }
+
+  if (authMsg) authMsg.innerText = "";
 }
 
-function saveAllUserData(data) {
-  localStorage.setItem("userData", JSON.stringify(data));
+/* =========================
+   每个邮箱自己的本地学习数据
+========================= */
+
+function normalizeUser(user) {
+  if (!user) return null;
+
+  return {
+    username: user.username || "",
+    email: user.email || user.username || "",
+    points: typeof user.points === "number" ? user.points : 0,
+    favorites: Array.isArray(user.favorites) ? user.favorites : [],
+    learnedWordsToday: Array.isArray(user.learnedWordsToday) ? user.learnedWordsToday : [],
+    wrongWords: Array.isArray(user.wrongWords) ? user.wrongWords : [],
+    lastLoginDate: user.lastLoginDate || "",
+    todayStudyDate: user.todayStudyDate || "",
+    todayStudyCount: typeof user.todayStudyCount === "number" ? user.todayStudyCount : 0,
+    passwordSet: !!user.passwordSet
+  };
 }
 
 function getCurrentUserData() {
-  const all = getAllUserData();
-  return all[currentUser] || null;
-}
+  if (!currentUser) return null;
 
-function updateCurrentUserData(data) {
-  const all = getAllUserData();
-  all[currentUser] = data;
-  saveAllUserData(all);
-}
+  const allUserData = JSON.parse(localStorage.getItem("userData")) || {};
+  const userData = allUserData[currentUser];
 
-// ===== 页面切换 =====
-function showPage(id) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
-
-// ===== 登录（验证码模拟）=====
-function loginWithCode() {
-  const email = document.getElementById("email").value.trim();
-  if (!email) return;
-
-  currentUser = email;
-
-  const all = getAllUserData();
-  if (!all[email]) {
-    all[email] = {
+  if (!userData) {
+    const defaultUserData = {
+      username: currentUser,
+      email: currentUser,
       points: 0,
+      favorites: [],
+      learnedWordsToday: [],
+      wrongWords: [],
       lastLoginDate: "",
       todayStudyDate: "",
       todayStudyCount: 0,
-      learnedWordsToday: []
+      passwordSet: false
     };
-    saveAllUserData(all);
+
+    allUserData[currentUser] = defaultUserData;
+    localStorage.setItem("userData", JSON.stringify(allUserData));
+    return defaultUserData;
   }
 
-  handleLoginSuccess();
+  return normalizeUser(userData);
 }
 
-// ===== 登录成功 =====
+function updateCurrentUserData(newData) {
+  if (!currentUser) return;
+
+  const allUserData = JSON.parse(localStorage.getItem("userData")) || {};
+  const oldData = allUserData[currentUser] || {
+    username: currentUser,
+    email: currentUser,
+    points: 0,
+    favorites: [],
+    learnedWordsToday: [],
+    wrongWords: [],
+    lastLoginDate: "",
+    todayStudyDate: "",
+    todayStudyCount: 0,
+    passwordSet: false
+  };
+
+  allUserData[currentUser] = normalizeUser({
+    ...oldData,
+    ...newData,
+    username: currentUser,
+    email: currentUser
+  });
+
+  localStorage.setItem("userData", JSON.stringify(allUserData));
+}
+
+function sameWord(a, b) {
+  return !!a && !!b && a.kana === b.kana && a.kanji === b.kanji;
+}
+
+/* =========================
+   OTP 注册 / 登录
+========================= */
+
+async function sendEmailCode() {
+  const email = document.getElementById("email").value.trim();
+  const authMsg = document.getElementById("authMsg");
+
+  if (!email) {
+    authMsg.innerText = "请输入邮箱";
+    return;
+  }
+
+  authMsg.innerText = "验证码发送中...";
+
+  const { error } = await supabaseClient.auth.signInWithOtp({
+    email,
+    options: {
+      shouldCreateUser: true
+    }
+  });
+
+  if (error) {
+    authMsg.innerText = "发送失败：" + error.message;
+  } else {
+    authMsg.innerText = "验证码已发送，请查看邮箱";
+  }
+}
+
+async function loginWithCode() {
+  const email = document.getElementById("email").value.trim();
+  const code = document.getElementById("emailCode").value.trim();
+  const authMsg = document.getElementById("authMsg");
+
+  if (!email || !code) {
+    authMsg.innerText = "请输入邮箱和验证码";
+    return;
+  }
+
+  authMsg.innerText = "验证码校验中...";
+
+  const { error } = await supabaseClient.auth.verifyOtp({
+    email,
+    token: code,
+    type: "email"
+  });
+
+  if (error) {
+    authMsg.innerText = "验证码错误：" + error.message;
+    return;
+  }
+
+  currentUser = email;
+  handleLoginSuccess();
+  authMsg.innerText = "验证码登录成功";
+}
+
+/* =========================
+   邮箱 + 密码登录
+========================= */
+
+async function loginWithEmailPassword() {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const authMsg = document.getElementById("authMsg");
+
+  if (!email || !password) {
+    authMsg.innerText = "邮箱和密码不能为空";
+    return;
+  }
+
+  authMsg.innerText = "登录中...";
+
+  const { error } = await supabaseClient.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    authMsg.innerText = "登录失败：" + error.message;
+    return;
+  }
+
+  currentUser = email;
+  handleLoginSuccess();
+  authMsg.innerText = "邮箱+密码登录成功";
+}
+
+/* =========================
+   设置密码弹窗（保留功能，但不自动弹）
+========================= */
+
+function showPasswordModalIfNeeded() {
+  const modal = document.getElementById("passwordModal");
+  if (modal) {
+    modal.classList.add("hidden");
+  }
+  return;
+}
+
+function closePasswordModal() {
+  const modal = document.getElementById("passwordModal");
+  const msg = document.getElementById("modalMsg");
+  const input = document.getElementById("modalPassword");
+
+  if (modal) modal.classList.add("hidden");
+  if (msg) msg.innerText = "";
+  if (input) input.value = "";
+}
+
+async function setPasswordFromModal() {
+  const passwordInput = document.getElementById("modalPassword");
+  const msg = document.getElementById("modalMsg");
+  const modal = document.getElementById("passwordModal");
+
+  if (!passwordInput || !msg || !modal) return;
+
+  const password = passwordInput.value.trim();
+
+  if (!password) {
+    msg.innerText = "请输入密码";
+    return;
+  }
+
+  if (password.length < 6) {
+    msg.innerText = "至少6位";
+    return;
+  }
+
+  msg.innerText = "保存中...";
+
+  try {
+    const { error } = await supabaseClient.auth.updateUser({
+      password: password
+    });
+
+    if (error) {
+      msg.innerText = "失败：" + error.message;
+      return;
+    }
+
+    const user = getCurrentUserData() || {};
+    updateCurrentUserData({
+      ...user,
+      passwordSet: true
+    });
+
+    passwordInput.value = "";
+    msg.innerText = "设置成功！";
+
+    setTimeout(() => {
+      modal.classList.add("hidden");
+      msg.innerText = "";
+    }, 500);
+  } catch (e) {
+    msg.innerText = "失败：" + e.message;
+  }
+}
+
+/* =========================
+   登录成功后的统一处理
+========================= */
+
 function handleLoginSuccess() {
   if (!currentUser) return;
 
@@ -81,91 +318,697 @@ function handleLoginSuccess() {
   showPage("bookPage");
 }
 
-// ===== 书本选择 =====
-function selectBook(bookKey) {
-  currentBook = bookKey;
-  loadBookData(bookKey);
-}
+/* =========================
+   语音初始化
+========================= */
 
-// ===== 加载数据 =====
-async function loadBookData(bookKey) {
-  try {
-    const res = await fetch(`data/${bookKey}.json`);
-    words = await res.json();
-
-    currentIndex = 0;
-    updateWordDisplay();
-
-    document.getElementById("bookName").innerText = bookKey.toUpperCase();
-    document.getElementById("totalWordsCount").innerText = words.length;
-
-    showPage("studyPage");
-  } catch (e) {
-    alert("加载失败：" + e.message);
+function loadVoices() {
+  if ("speechSynthesis" in window) {
+    voices = speechSynthesis.getVoices();
   }
 }
 
-// ===== 显示单词 =====
-function updateWordDisplay() {
-  if (!words.length) return;
-
-  const w = words[currentIndex];
-
-  document.getElementById("kana").innerText = w.kana || "";
-  document.getElementById("kanji").innerText = w.kanji || "";
-  document.getElementById("meaning").innerText = w.meaning || "";
-  document.getElementById("exampleJa").innerText = w.exampleJa || "";
-  document.getElementById("exampleZh").innerText = w.exampleZh || "";
-
-  document.getElementById("currentWordIndex").innerText = currentIndex + 1;
+if ("speechSynthesis" in window) {
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
 }
 
-// ===== 上一个 =====
-function prevWord() {
-  if (currentIndex > 0) {
-    currentIndex--;
-    updateWordDisplay();
+/* =========================
+   页面与计时
+========================= */
+
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  const targetPage = document.getElementById(pageId);
+  if (targetPage) {
+    targetPage.classList.add("active");
   }
 }
 
-// ===== 下一个 =====
-function nextWord() {
-  if (currentIndex < words.length - 1) {
-    currentIndex++;
-    updateWordDisplay();
+function formatStudyTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return String(mins).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
+}
+
+function updateStudyTimerDisplay() {
+  const globalTimerEl = document.getElementById("globalStudyTimer");
+  const rewardEl = document.getElementById("globalRewardCount");
+  const globalBar = document.getElementById("globalStudyBar");
+
+  if (globalBar) {
+    if (studySessionActive) {
+      globalBar.classList.remove("hidden");
+    } else {
+      globalBar.classList.add("hidden");
+    }
+  }
+
+  if (globalTimerEl) {
+    globalTimerEl.innerText = formatStudyTime(studySeconds);
+  }
+
+  if (rewardEl) {
+    rewardEl.innerText = rewardedTenMinuteBlocks;
   }
 }
 
-// ===== 已学习 =====
-function markLearned() {
-  const user = getCurrentUserData();
+function startStudySession() {
+  studySessionActive = true;
+
+  if (studyTimerInterval) {
+    clearInterval(studyTimerInterval);
+  }
+
+  studyTimerInterval = setInterval(() => {
+    studySeconds++;
+    rewardStudyPointsIfNeeded();
+    updateStudyTimerDisplay();
+  }, 1000);
+
+  updateStudyTimerDisplay();
+}
+
+function stopStudySession() {
+  studySessionActive = false;
+
+  if (studyTimerInterval) {
+    clearInterval(studyTimerInterval);
+    studyTimerInterval = null;
+  }
+
+  updateStudyTimerDisplay();
+}
+
+function resetStudySession() {
+  studySeconds = 0;
+  rewardedTenMinuteBlocks = 0;
+  updateStudyTimerDisplay();
+}
+
+function rewardStudyPointsIfNeeded() {
+  if (!currentUser) return;
+
+  const user = normalizeUser(getCurrentUserData());
   if (!user) return;
 
-  user.todayStudyCount++;
-  user.points += 1;
+  const completedBlocks = Math.floor(studySeconds / 600);
+
+  if (completedBlocks > rewardedTenMinuteBlocks) {
+    const newBlocks = completedBlocks - rewardedTenMinuteBlocks;
+    const rewardPoints = newBlocks * 20;
+
+    user.points += rewardPoints;
+    rewardedTenMinuteBlocks = completedBlocks;
+
+    updateCurrentUserData(user);
+    updateBookPage();
+    updateStudyPage();
+
+    const studyMsg = document.getElementById("studyMsg");
+    if (studyMsg) {
+      studyMsg.innerText = `学习满 ${completedBlocks * 10} 分钟，已奖励 ${rewardPoints} 积分！`;
+    }
+  }
+
+  updateStudyTimerDisplay();
+}
+
+async function logout() {
+  stopStudySession();
+  resetStudySession();
+
+  await supabaseClient.auth.signOut();
+
+  currentUser = null;
+  currentBook = null;
+  currentIndex = 0;
+  reviewIndex = 0;
+  reviewList = [];
+
+  const authMsg = document.getElementById("authMsg");
+  if (authMsg) authMsg.innerText = "";
+
+  showPage("authPage");
+}
+
+function updateBookPage() {
+  const user = normalizeUser(getCurrentUserData());
+  if (!user) return;
+
+  const currentUserEl = document.getElementById("currentUser");
+  const userPointsEl = document.getElementById("userPoints");
+
+  if (currentUserEl) currentUserEl.innerText = user.username;
+  if (userPointsEl) userPointsEl.innerText = user.points;
+
+  updateStudyTimerDisplay();
+}
+
+/* =========================
+   学习
+========================= */
+
+async function selectBook(bookKey) {
+  try {
+    if (!books[bookKey] || books[bookKey].length === 0) {
+      await loadBookData(bookKey);
+    }
+
+    if (!Array.isArray(books[bookKey]) || books[bookKey].length === 0) {
+      alert("这本单词书目前是空的");
+      return;
+    }
+
+    currentBook = bookKey;
+    currentIndex = 0;
+
+    const bookNameEl = document.getElementById("bookName");
+    if (bookNameEl) {
+      bookNameEl.innerText = bookNames[bookKey] || bookKey;
+    }
+
+    resetStudySession();
+    startStudySession();
+
+    updateStudyPage();
+    showWord();
+    showPage("studyPage");
+  } catch (error) {
+    alert("加载单词书失败：" + error.message);
+    console.error(error);
+  }
+}
+
+let books = {
+  n2: [],
+  n3: [],
+  n5: [],
+  n4: [],
+  daily: []
+};
+
+async function loadBookData(bookKey) {
+  const response = await fetch(`data/${bookKey}.json`);
+  if (!response.ok) {
+    throw new Error(`加载 ${bookKey}.json 失败`);
+  }
+  const data = await response.json();
+  books[bookKey] = data;
+}
+
+function updateStudyPage() {
+  const user = normalizeUser(getCurrentUserData());
+  if (!user) return;
+
+  const todayCountEl = document.getElementById("todayCount");
+  const studyPointsEl = document.getElementById("studyPoints");
+  const totalWordsCountEl = document.getElementById("totalWordsCount");
+  const currentWordIndexEl = document.getElementById("currentWordIndex");
+
+  if (todayCountEl) todayCountEl.innerText = user.todayStudyCount;
+  if (studyPointsEl) studyPointsEl.innerText = user.points;
+
+  const totalWords = currentBook && books[currentBook] ? books[currentBook].length : 0;
+  if (totalWordsCountEl) totalWordsCountEl.innerText = totalWords;
+  if (currentWordIndexEl) currentWordIndexEl.innerText = totalWords > 0 ? currentIndex + 1 : 0;
+
+  const voiceBtn = document.getElementById("voiceBtn");
+  if (voiceBtn) {
+    voiceBtn.style.display = user.points >= 100 ? "inline-block" : "none";
+  }
+
+  const exampleVoiceBtn = document.getElementById("exampleVoiceBtn");
+  if (exampleVoiceBtn) {
+    exampleVoiceBtn.style.display = user.points >= 100 ? "inline-block" : "none";
+  }
+
+  const wordAndExampleBtn = document.getElementById("wordAndExampleVoiceBtn");
+  if (wordAndExampleBtn) {
+    wordAndExampleBtn.style.display = user.points >= 100 ? "inline-block" : "none";
+  }
+
+  updateStudyTimerDisplay();
+}
+
+function showWord() {
+  if (!currentBook || !books[currentBook] || books[currentBook].length === 0) {
+    const studyMsg = document.getElementById("studyMsg");
+    if (studyMsg) studyMsg.innerText = "当前单词书没有数据";
+    return;
+  }
+
+  const word = books[currentBook][currentIndex];
+
+  const kanaEl = document.getElementById("kana");
+  const kanjiEl = document.getElementById("kanji");
+  const meaningEl = document.getElementById("meaning");
+  const posEl = document.getElementById("pos");
+
+  if (kanaEl) kanaEl.innerText = word.kana || "";
+  if (kanjiEl) kanjiEl.innerText = word.kanji || "（无汉字）";
+  if (meaningEl) meaningEl.innerText = word.meaning || "";
+  if (posEl) posEl.innerText = word.pos || "";
+
+  const exampleJa = (word.exampleJa || "").trim();
+  const exampleZh = (word.exampleZh || "").trim();
+
+  const exampleSection = document.getElementById("exampleSection");
+  const exampleJaEl = document.getElementById("exampleJa");
+  const exampleZhEl = document.getElementById("exampleZh");
+
+  if (exampleSection && exampleJaEl && exampleZhEl) {
+    if (exampleJa || exampleZh) {
+      exampleSection.classList.remove("hidden");
+      exampleJaEl.innerText = exampleJa || "暂无日语例句";
+      exampleZhEl.innerText = exampleZh || "暂无中文翻译";
+    } else {
+      exampleSection.classList.add("hidden");
+      exampleJaEl.innerText = "";
+      exampleZhEl.innerText = "";
+    }
+  }
+
+  const exampleVoiceBtn = document.getElementById("exampleVoiceBtn");
+  if (exampleVoiceBtn) {
+    exampleVoiceBtn.style.display = exampleJa ? "inline-block" : "none";
+  }
+
+  const wordAndExampleBtn = document.getElementById("wordAndExampleVoiceBtn");
+  if (wordAndExampleBtn) {
+    wordAndExampleBtn.style.display = exampleJa ? "inline-block" : "none";
+  }
+
+  const currentWordIndexEl = document.getElementById("currentWordIndex");
+  const totalWordsCountEl = document.getElementById("totalWordsCount");
+  if (currentWordIndexEl) currentWordIndexEl.innerText = currentIndex + 1;
+  if (totalWordsCountEl) totalWordsCountEl.innerText = books[currentBook].length;
+}
+
+function prevWord() {
+  if (!currentBook || !books[currentBook] || books[currentBook].length === 0) return;
+
+  currentIndex--;
+  if (currentIndex < 0) {
+    currentIndex = books[currentBook].length - 1;
+  }
+
+  showWord();
+  updateStudyPage();
+}
+
+function nextWord() {
+  if (!currentBook || !books[currentBook] || books[currentBook].length === 0) return;
+
+  currentIndex++;
+  if (currentIndex >= books[currentBook].length) {
+    currentIndex = 0;
+  }
+
+  showWord();
+  updateStudyPage();
+}
+
+function markLearned() {
+  const user = normalizeUser(getCurrentUserData());
+  if (!user) {
+    alert("请先登录");
+    return;
+  }
+
+  if (!currentBook || !books[currentBook] || books[currentBook].length === 0) return;
+
+  if (user.todayStudyCount >= 100) {
+    const studyMsg = document.getElementById("studyMsg");
+    if (studyMsg) studyMsg.innerText = "今天已经学满 100 个单词了";
+    return;
+  }
+
+  user.todayStudyCount += 1;
+
+  if (user.todayStudyCount % 20 === 0) {
+    user.points += 20;
+    const studyMsg = document.getElementById("studyMsg");
+    if (studyMsg) studyMsg.innerText = "已学习，奖励 20 积分";
+  } else {
+    const studyMsg = document.getElementById("studyMsg");
+    if (studyMsg) studyMsg.innerText = "已学习，自动进入下一个单词";
+  }
+
+  const word = books[currentBook][currentIndex];
+  const exists = user.learnedWordsToday.some(item => sameWord(item, word));
+  if (!exists) {
+    user.learnedWordsToday.push(word);
+  }
 
   updateCurrentUserData(user);
 
-  document.getElementById("todayCount").innerText = user.todayStudyCount;
-  document.getElementById("studyPoints").innerText = user.points;
+  currentIndex++;
+  if (currentIndex >= books[currentBook].length) {
+    currentIndex = 0;
+  }
+
+  updateBookPage();
+  updateStudyPage();
+  showWord();
 }
 
-// ===== 返回书本 =====
-function backToBooks() {
-  showPage("bookPage");
+function addToFavorites() {
+  const user = normalizeUser(getCurrentUserData());
+  if (!user) {
+    alert("请先登录");
+    return;
+  }
+
+  if (!currentBook || !books[currentBook] || books[currentBook].length === 0) return;
+
+  const word = books[currentBook][currentIndex];
+  const exists = user.favorites.some(item => sameWord(item, word));
+
+  const studyMsg = document.getElementById("studyMsg");
+
+  if (!exists) {
+    user.favorites.push(word);
+    updateCurrentUserData(user);
+    updateBookPage();
+    updateStudyPage();
+    if (studyMsg) studyMsg.innerText = "已加入收藏夹";
+  } else {
+    if (studyMsg) studyMsg.innerText = "这个单词已经在收藏夹里了";
+  }
 }
 
-// ===== 更新书页 =====
-function updateBookPage() {
-  const user = getCurrentUserData();
+function goToFavorites() {
+  const user = normalizeUser(getCurrentUserData());
   if (!user) return;
 
-  document.getElementById("currentUser").innerText = currentUser;
-  document.getElementById("userPoints").innerText = user.points;
+  const list = document.getElementById("favoriteList");
+  if (!list) return;
+
+  list.innerHTML = "";
+
+  if (user.favorites.length === 0) {
+    list.innerHTML = "<li>暂无收藏单词</li>";
+  } else {
+    user.favorites.forEach(word => {
+      const li = document.createElement("li");
+      li.innerText = `${word.kana}${word.kanji ? "（" + word.kanji + "）" : ""} - ${word.meaning}`;
+      list.appendChild(li);
+    });
+  }
+
+  showPage("favoritesPage");
+  updateStudyTimerDisplay();
 }
 
-// ===== 退出 =====
-function logout() {
-  currentUser = null;
-  showPage("authPage");
+function backToBooks() {
+  updateBookPage();
+  showPage("bookPage");
+  updateStudyTimerDisplay();
 }
+
+/* =========================
+   复习
+========================= */
+
+function goToReview() {
+  const user = normalizeUser(getCurrentUserData());
+  if (!user) return;
+
+  const learnedWords = user.learnedWordsToday || [];
+  const wrongWords = user.wrongWords || [];
+
+  reviewList = [...wrongWords];
+
+  learnedWords.forEach(word => {
+    const exists = reviewList.some(item => sameWord(item, word));
+    if (!exists) {
+      reviewList.push(word);
+    }
+  });
+
+  const reviewMeaningEl = document.getElementById("reviewMeaning");
+  const reviewAnswerEl = document.getElementById("reviewAnswer");
+  const reviewMsgEl = document.getElementById("reviewMsg");
+
+  if (reviewList.length === 0) {
+    if (reviewMeaningEl) reviewMeaningEl.innerText = "暂无需要复习的单词";
+    if (reviewAnswerEl) reviewAnswerEl.innerText = "";
+    if (reviewMsgEl) reviewMsgEl.innerText = "";
+    showPage("reviewPage");
+    return;
+  }
+
+  reviewIndex = 0;
+  showReviewWord();
+  showPage("reviewPage");
+}
+
+function showReviewWord() {
+  const word = reviewList[reviewIndex];
+
+  const reviewMeaningEl = document.getElementById("reviewMeaning");
+  const reviewInputEl = document.getElementById("reviewInput");
+  const reviewAnswerEl = document.getElementById("reviewAnswer");
+  const reviewMsgEl = document.getElementById("reviewMsg");
+
+  if (!word) {
+    if (reviewMeaningEl) reviewMeaningEl.innerText = "今天复习完成";
+    if (reviewAnswerEl) reviewAnswerEl.innerText = "";
+    if (reviewMsgEl) reviewMsgEl.innerText = "";
+    return;
+  }
+
+  if (reviewMeaningEl) reviewMeaningEl.innerText = word.meaning;
+  if (reviewInputEl) reviewInputEl.value = "";
+  if (reviewAnswerEl) reviewAnswerEl.innerText = "";
+  if (reviewMsgEl) reviewMsgEl.innerText = "";
+}
+
+function checkReview() {
+  const user = normalizeUser(getCurrentUserData());
+  if (!user) return;
+
+  const word = reviewList[reviewIndex];
+  const reviewInputEl = document.getElementById("reviewInput");
+  const reviewMsgEl = document.getElementById("reviewMsg");
+
+  const input = reviewInputEl ? reviewInputEl.value.trim() : "";
+
+  if (!word) return;
+
+  if (input === word.kana || input === word.kanji) {
+    user.wrongWords = user.wrongWords.filter(item => !sameWord(item, word));
+    updateCurrentUserData(user);
+
+    if (reviewMsgEl) reviewMsgEl.innerText = "回答正确，进入下一个";
+    reviewIndex++;
+
+    if (reviewIndex >= reviewList.length) {
+      const reviewMeaningEl = document.getElementById("reviewMeaning");
+      const reviewAnswerEl = document.getElementById("reviewAnswer");
+      if (reviewMeaningEl) reviewMeaningEl.innerText = "今天复习完成";
+      if (reviewAnswerEl) reviewAnswerEl.innerText = "";
+      if (reviewMsgEl) reviewMsgEl.innerText = "很好，今天的复习结束了";
+      return;
+    }
+
+    setTimeout(() => {
+      showReviewWord();
+    }, 800);
+  } else {
+    const exists = user.wrongWords.some(item => sameWord(item, word));
+    if (!exists) {
+      user.wrongWords.push(word);
+      updateCurrentUserData(user);
+    }
+
+    if (reviewMsgEl) reviewMsgEl.innerText = "回答错误，可以查看答案";
+  }
+}
+
+function showAnswer() {
+  const word = reviewList[reviewIndex];
+  if (!word) return;
+
+  const exampleJa = (word.exampleJa || "").trim();
+  const exampleZh = (word.exampleZh || "").trim();
+
+  let html = `
+    假名：${word.kana}<br>
+    汉字：${word.kanji || "无"}<br>
+    中文：${word.meaning || ""}<br>
+  `;
+
+  if (exampleJa || exampleZh) {
+    html += `
+      例句：${exampleJa || "暂无日语例句"}<br>
+      例句中文：${exampleZh || "暂无中文翻译"}
+    `;
+  }
+
+  const reviewAnswerEl = document.getElementById("reviewAnswer");
+  if (reviewAnswerEl) {
+    reviewAnswerEl.innerHTML = html;
+  }
+}
+
+function skipReview() {
+  if (reviewList.length === 0) return;
+
+  reviewIndex++;
+
+  const reviewMeaningEl = document.getElementById("reviewMeaning");
+  const reviewAnswerEl = document.getElementById("reviewAnswer");
+  const reviewMsgEl = document.getElementById("reviewMsg");
+
+  if (reviewIndex >= reviewList.length) {
+    if (reviewMeaningEl) reviewMeaningEl.innerText = "今天复习完成";
+    if (reviewAnswerEl) reviewAnswerEl.innerText = "";
+    if (reviewMsgEl) reviewMsgEl.innerText = "已跳过到最后";
+    return;
+  }
+
+  showReviewWord();
+}
+
+function backToStudy() {
+  updateStudyPage();
+  showPage("studyPage");
+}
+
+/* =========================
+   语音
+========================= */
+
+function speakWord() {
+  const user = normalizeUser(getCurrentUserData());
+  if (!user) return;
+
+  if (user.points < 100) {
+    alert("积分未达到 100，暂未解锁语音功能");
+    return;
+  }
+
+  if (!currentBook || !books[currentBook] || books[currentBook].length === 0) return;
+
+  const word = books[currentBook][currentIndex];
+  const text = word.kanji || word.kana;
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  const jpVoice = voices.find(v => v.lang === "ja-JP");
+
+  if (jpVoice) {
+    utterance.voice = jpVoice;
+  } else {
+    alert("没有找到日语语音，请先在系统里安装日语语音包");
+  }
+
+  utterance.lang = "ja-JP";
+  utterance.rate = 0.9;
+  utterance.pitch = 1;
+
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utterance);
+}
+
+function speakExample() {
+  const user = normalizeUser(getCurrentUserData());
+  if (!user) return;
+
+  if (user.points < 100) {
+    alert("积分未达到 100，暂未解锁语音功能");
+    return;
+  }
+
+  if (!currentBook || !books[currentBook] || books[currentBook].length === 0) return;
+
+  const word = books[currentBook][currentIndex];
+  const text = (word.exampleJa || "").trim();
+
+  if (!text) {
+    alert("当前单词暂无日语例句");
+    return;
+  }
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  const jpVoice = voices.find(v => v.lang === "ja-JP");
+
+  if (jpVoice) {
+    utterance.voice = jpVoice;
+  } else {
+    alert("没有找到日语语音，请先在系统里安装日语语音包");
+  }
+
+  utterance.lang = "ja-JP";
+  utterance.rate = 0.9;
+  utterance.pitch = 1;
+
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utterance);
+}
+
+function speakWordAndExample() {
+  const user = normalizeUser(getCurrentUserData());
+  if (!user) return;
+
+  if (user.points < 100) {
+    alert("积分未达到 100，暂未解锁语音功能");
+    return;
+  }
+
+  if (!currentBook || !books[currentBook] || books[currentBook].length === 0) return;
+
+  const word = books[currentBook][currentIndex];
+  const wordText = word.kanji || word.kana;
+  const exampleText = (word.exampleJa || "").trim();
+  const jpVoice = voices.find(v => v.lang === "ja-JP");
+
+  speechSynthesis.cancel();
+
+  const utterance1 = new SpeechSynthesisUtterance(wordText);
+  utterance1.lang = "ja-JP";
+  utterance1.rate = 0.9;
+  utterance1.pitch = 1;
+  if (jpVoice) utterance1.voice = jpVoice;
+
+  if (!exampleText) {
+    speechSynthesis.speak(utterance1);
+    return;
+  }
+
+  const utterance2 = new SpeechSynthesisUtterance(exampleText);
+  utterance2.lang = "ja-JP";
+  utterance2.rate = 0.9;
+  utterance2.pitch = 1;
+  if (jpVoice) utterance2.voice = jpVoice;
+
+  utterance1.onend = () => {
+    speechSynthesis.speak(utterance2);
+  };
+
+  speechSynthesis.speak(utterance1);
+}
+
+/* =========================
+   页面加载后恢复登录
+========================= */
+
+document.addEventListener("DOMContentLoaded", async () => {
+  switchAuthMode("otp");
+
+  const modal = document.getElementById("passwordModal");
+  if (modal) {
+    modal.classList.add("hidden");
+  }
+
+  const { data } = await supabaseClient.auth.getSession();
+
+  if (data && data.session && data.session.user) {
+    currentUser = data.session.user.email;
+    handleLoginSuccess();
+  }
+});
