@@ -27,7 +27,6 @@ body {
   display: flex;
 }
 
-/* 主卡片 */
 .card {
   width: 100%;
   max-width: 900px;
@@ -39,7 +38,6 @@ body {
   border: 1px solid rgba(180, 210, 255, 0.45);
 }
 
-/* 标题 */
 h1,
 h2,
 h3 {
@@ -47,7 +45,6 @@ h3 {
   color: #405b86;
 }
 
-/* 输入框 */
 input {
   width: 100%;
   padding: 12px;
@@ -57,7 +54,6 @@ input {
   font-size: 16px;
 }
 
-/* 按钮 */
 button {
   padding: 12px 18px;
   border: none;
@@ -79,9 +75,9 @@ button:hover {
 button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
 }
 
-/* 按钮组 */
 .btn-group {
   display: flex;
   flex-wrap: wrap;
@@ -89,16 +85,16 @@ button:disabled {
   margin-top: 20px;
 }
 
-/* 提示 */
 .msg {
   margin-top: 16px;
   font-weight: bold;
   color: #ff9800;
+  line-height: 1.6;
 }
 
-/* 欢迎区 */
 .welcome-title {
   font-size: 30px;
+  margin-bottom: 10px;
   text-align: center;
   font-weight: 700;
   color: #4f6fa3;
@@ -111,7 +107,6 @@ button:disabled {
   margin-bottom: 24px;
 }
 
-/* 单词书列表 */
 .book-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -119,7 +114,6 @@ button:disabled {
   margin-top: 24px;
 }
 
-/* 单词书卡片 */
 .book-card {
   background: #ffffff;
   border-radius: 24px;
@@ -133,7 +127,6 @@ button:disabled {
   transform: translateY(-3px);
 }
 
-/* 单词书标题 */
 .book-title {
   font-size: 22px;
   font-weight: 700;
@@ -141,14 +134,13 @@ button:disabled {
   color: #405b86;
 }
 
-/* 描述 */
 .book-desc {
   font-size: 15px;
   color: #8a97ab;
   margin-bottom: 16px;
+  line-height: 1.6;
 }
 
-/* 学习卡片 */
 .word-box {
   background: #ffffff;
   padding: 24px;
@@ -157,27 +149,59 @@ button:disabled {
   box-shadow: 0 6px 18px rgba(140, 170, 210, 0.15);
 }
 
+.word-head,
+.word-main,
+.meaning-box {
+  margin-bottom: 18px;
+}
+
+.kana-label,
+.kanji-label,
+.meaning-label,
+.example-title {
+  font-size: 14px;
+  color: #7e8da5;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
 #kana {
   font-size: 26px;
+  margin: 0;
+  font-weight: 600;
 }
 
 #kanji {
   font-size: 40px;
-  font-weight: bold;
+  margin: 0;
+  line-height: 1.2;
+  word-break: break-word;
 }
 
 #meaning {
+  margin: 0;
   font-size: 20px;
+  line-height: 1.6;
 }
 
-/* 例句 */
+.example-section {
+  margin-top: 24px;
+  display: grid;
+  gap: 14px;
+}
+
 .example-card {
   background: #f4f8ff;
   border-radius: 16px;
-  padding: 16px;
+  padding: 16px 18px;
 }
 
-/* 复习 */
+.example-card p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
 .review-box {
   background: #ffffff;
   padding: 22px;
@@ -185,7 +209,25 @@ button:disabled {
   margin-top: 20px;
 }
 
-/* 顶部条 */
+#reviewMeaning {
+  font-size: 28px;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+#reviewInput {
+  font-size: 18px;
+  padding: 14px;
+}
+
+.answer-box {
+  background: #f4f8ff;
+  border-radius: 16px;
+  padding: 18px;
+  margin-top: 18px;
+  line-height: 1.8;
+}
+
 .global-study-bar {
   width: 100%;
   max-width: 900px;
@@ -195,34 +237,28 @@ button:disabled {
   border-radius: 16px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: #4f6488;
+  font-size: 16px;
   box-shadow: 0 6px 20px rgba(80, 120, 180, 0.1);
   border: 1px solid rgba(180, 210, 255, 0.4);
 }
 
-/* 弹窗 */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.hidden {
+  display: none !important;
 }
 
-.modal-content {
-  background: #ffffff;
-  color: #333;
-  padding: 30px;
-  border-radius: 16px;
-  width: 90%;
-  max-width: 400px;
+/* 彻底禁用弹窗类，防止旧缓存残留 */
+.modal,
+#passwordModal {
+  display: none !important;
 }
 
-/* 手机适配 */
+#favoriteList {
+  padding-left: 20px;
+  line-height: 1.8;
+}
+
 @media (max-width: 768px) {
   #app {
     padding: 16px;
@@ -232,11 +268,42 @@ button:disabled {
     padding: 20px;
   }
 
+  .global-study-bar {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    font-size: 14px;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+
   button {
     width: 100%;
   }
 
   .book-list {
     grid-template-columns: 1fr;
+  }
+
+  #kanji {
+    font-size: 32px;
+  }
+
+  #kana {
+    font-size: 22px;
+  }
+
+  #meaning {
+    font-size: 18px;
+  }
+
+  #reviewMeaning {
+    font-size: 22px;
+  }
+
+  .example-card p {
+    font-size: 16px;
   }
 }
